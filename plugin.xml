@@ -11,6 +11,7 @@
     <license>Apache 2.0 License</license>
 
     <preference name="API_KEY" />
+    <preference name="PACKAGE" />
 
     <engines>
         <engine name="cordova" version=">=3.0"/>
@@ -65,7 +66,7 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <!-- Required  一些系统要求的权限，如访问网络等-->
-            <uses-permission android:name="$PACKAGE_NAME.permission.JPUSH_MESSAGE"/>
+            <uses-permission android:name="$PACKAGE.permission.JPUSH_MESSAGE"/>
             <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
             <uses-permission android:name="android.permission.INTERNET"/>
             <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -78,7 +79,7 @@
             <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 			<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
             <permission
-                    android:name="$PACKAGE_NAME.permission.JPUSH_MESSAGE"
+                    android:name="$PACKAGE.permission.JPUSH_MESSAGE"
                     android:protectionLevel="signature"/>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
@@ -90,7 +91,7 @@
                 <intent-filter>
                     <action android:name="cn.jpush.android.ui.PushActivity"/>
                     <category android:name="android.intent.category.DEFAULT"/>
-                    <category android:name="$PACKAGE_NAME"/>
+                    <category android:name="$PACKAGE"/>
                 </intent-filter>
             </activity>
             <!-- Required  SDK核心功能-->
@@ -119,7 +120,7 @@
                 <intent-filter android:priority="1000">
                     <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"/>
                     <!--Required  显示通知栏 -->
-                    <category android:name="$PACKAGE_NAME"/>
+                    <category android:name="$PACKAGE"/>
                 </intent-filter>
                 <intent-filter>
                     <action android:name="android.intent.action.USER_PRESENT"/>
@@ -140,7 +141,7 @@
                 <intent-filter android:priority="1000">
                     <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"/>
                     <!-- Required  显示通知栏 -->
-                    <category android:name="$PACKAGE_NAME"/>
+                    <category android:name="$PACKAGE"/>
                 </intent-filter>
                 <intent-filter>
                     <action android:name="cn.jpush.android.intent.REGISTRATION"/>
@@ -154,7 +155,7 @@
                     <!-- Required  用户打开自定义通知栏的intent -->
                     <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK"/>
                     <!-- Optional 用户接受Rich Push Javascript 回调函数的intent -->
-                    <category android:name="$PACKAGE_NAME"/>
+                    <category android:name="$PACKAGE"/>
                 </intent-filter>
             </receiver>
             <!-- Required SDK核心功能-->
