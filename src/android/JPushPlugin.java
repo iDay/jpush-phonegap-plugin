@@ -19,14 +19,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Map.Entry;
 
-import __PACKAGE_NAME__.R;
-
 import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.CustomPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.data.JPushLocalNotification;
 import cn.jpush.android.api.TagAliasCallback;
 import android.util.Log;
+import android.content.Context;
 
 
 public class JPushPlugin extends CordovaPlugin {
@@ -453,11 +452,15 @@ public class JPushPlugin extends CordovaPlugin {
 
 	void setCustomPushNotificationBuilder(JSONArray data,
 			CallbackContext callbackContext) {
+		Context context = this.cordova.getActivity();
 		CustomPushNotificationBuilder builder = new CustomPushNotificationBuilder(
-				this.cordova.getActivity(), R.layout.test_notification_layout,
-				R.id.icon, R.id.title, R.id.text);
+				this.cordova.getActivity(),
+				context.getResources().getIdentifier("test_notification_layout", "style", context.getPackageName()),
+				context.getResources().getIdentifier("icon", "id", context.getPackageName()),
+				context.getResources().getIdentifier("title", "id", context.getPackageName()),
+				context.getResources().getIdentifier("text", "id", context.getPackageName()));
 		builder.developerArg0 = "Custom Builder 1";
-		builder.layoutIconDrawable = R.drawable.jpush_notification_icon;
+		builder.layoutIconDrawable = context.getResources().getIdentifier("jpush_notification_icon", "drawable", context.getPackageName()));
 		JPushInterface.setPushNotificationBuilder(2, builder);
 		JSONObject obj = new JSONObject();
 		try {
